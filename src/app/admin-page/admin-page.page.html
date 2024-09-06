@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>AdminPage</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">AdminPage</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-button expand="full" (click)="crearProducto()" >Agregar producto nuevo</ion-button>
+  <ion-button expand="full" (click)="crearCategoria()">Agregar Categoria nuevo</ion-button>
+  <ion-button expand="full" (click)="listarCategoria()">Listar Categorias</ion-button>
+  <ion-button expand="full" (click)="crearBodega()">Agregar Bodega nuevo</ion-button>
+  <ion-button expand="full" (click)="listarBodega()">Listar Bodegas</ion-button>
+  <ion-button expand="full" (click)="agregarDetalleC()">Añadir detalle de compra</ion-button>
+
+</ion-content>

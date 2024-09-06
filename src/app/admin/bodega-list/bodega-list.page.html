@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Bodegas</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+
+      <ion-item *ngFor="let bodega of bodegas">
+        <ion-label>
+          <h3>{{ bodega.direccion }}</h3>
+          <p>Comuna: {{ bodega.comuna }}</p>
+          <p>Region: {{ bodega.region }}</p>
+          <p>Telefono: {{ bodega.telefono }}</p>
+        </ion-label>
+      </ion-item>
+  
+    </ion-list>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Añadir detalle de compra </ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="detalleForm" (ngSubmit)="onFormSubmit(detalleForm.value)">
+
+    <ion-item>
+      <ion-label position="floating">Sucursal</ion-label>
+      <ion-select [(ngModel)]="detalleC.sucursal" formControlName="detalle_sucursal">
+        <ion-select-option
+          *ngFor="let bodega of bodegas"
+          [value]="bodega"
+        >
+        {{ bodega.direccion }}
+      </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Id de producto</ion-label>
+      <ion-input type="number" [(ngModel)]="detalleC.prod" formControlName="detalle_prod"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Stock ingresado</ion-label>
+      <ion-input type="number" [(ngModel)]="detalleC.stock" formControlName="detalle_stock"></ion-input>
+    </ion-item>
+    <ion-button type="submit" shape="round" color="primary" expand="block"
+      [disabled]="!detalleForm.valid">Submit</ion-button>
+
+
+
+
+
+  </form>
+</ion-content>

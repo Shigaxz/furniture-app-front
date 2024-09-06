@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Menu Agregar Productos </ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm.value)">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="product.nombre" formControlName="prod_name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" [(ngModel)]="product.precio" formControlName="prod_price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="product.descripcion" formControlName="prod_desc"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">imagen</ion-label>
+      <ion-input type="text" [(ngModel)]="product.img" formControlName="prod_img"></ion-input>
+    </ion-item>
+    <ion-button type="submit" shape="round" color="primary" expand="block"
+      [disabled]="!productForm.valid">Submit</ion-button>
+
+
+
+
+  </form>
+</ion-content>

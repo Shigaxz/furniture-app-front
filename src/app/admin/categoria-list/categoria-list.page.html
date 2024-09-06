@@ -1,0 +1,19 @@
+
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Categorias</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+
+      <ion-item *ngFor="let categoria of categoriass">
+        <ion-label>
+          <p>{{ categoria.id }}</p>
+          <p>{{ categoria.nombre }}</p>
+        </ion-label>
+      </ion-item>
+  
+    </ion-list>
+  </ion-card-content>
+</ion-card>

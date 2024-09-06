@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mis favoritos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Mis favoritos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let product of fav">
+      <ion-thumbnail slot="start">
+        <img [src]="product.img" alt="{{ product.img }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ product.nombre }}</h2>
+        <p>Precio: ${{ product.precio }}</p>
+
+
+
+      </ion-label>
+      <ion-button (click)="addToCart(product)">Agregar al carrito</ion-button>
+      <ion-button fill="clear" (click)="removeProduct(product)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

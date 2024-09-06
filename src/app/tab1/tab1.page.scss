@@ -1,0 +1,41 @@
+/* En tu archivo .scss correspondiente, por ejemplo, tab1.page.scss */
+
+/* Estilo personalizado para el ion-searchbar */
+ion-searchbar {
+    background-color: #ffc9ff71; /* Color de fondo */
+    
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px 0; /* Margen superior e inferior */
+    max-width: 80%; /* Ancho máximo */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
+  
+    /* Estilo para el resultado de búsqueda */
+    &.searchbar-has-focus {
+      .searchbar-suggestions {
+        display: block; /* Mostrar la lista de sugerencias cuando el cuadro de búsqueda tiene enfoque */
+        opacity: 1; /* Opacidad completa cuando se muestra */
+        transition: opacity 0.3s ease-in-out; /* Agregar una transición suave de 0.3 segundos */
+      }
+    }
+  }
+  
+  /* Estilo para la lista de sugerencias */
+  ion-searchbar .searchbar-suggestions {
+    display: none; /* Ocultar la lista de sugerencias por defecto */
+    background-color: #fff; /* Color de fondo de la lista de sugerencias */
+    border: 1px solid #ccc; /* Borde de la lista de sugerencias */
+    border-top: none; /* Eliminar borde superior para una apariencia más limpia */
+    border-radius: 0 0 20px 20px; /* Bordes redondeados en la parte inferior */
+    max-height: 200px; /* Altura máxima de la lista de sugerencias */
+    overflow-y: auto; /* Habilitar desplazamiento vertical si la lista es larga */
+    opacity: 10; /* Inicialmente, la lista de sugerencias es transparente */
+  }
+  .lista-productos {
+    margin: 10px; /* Aplicar un margen alrededor de toda la lista de productos */
+    border-radius: 10px; /* Agregar bordes redondeados */
+    overflow: hidden; /* Ocultar cualquier contenido que se desborde de los bordes redondeados */
+  }
+  
+  

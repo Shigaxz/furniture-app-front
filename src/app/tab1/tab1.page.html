@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Compras
+      <img src="https://images.vexels.com/media/users/3/200097/isolated/preview/942820836246f08c2d6be20a45a84139-icono-de-carrito-de-compras-carrito-de-compras.png" width="25" height="25">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Productos</ion-title>
+
+
+    </ion-toolbar>
+
+  </ion-header>
+  <ion-searchbar #searchBar [(ngModel)]="terminoBusqueda" (ionChange)="filtrarProductos()"></ion-searchbar>
+  <ion-button (click)=irFavoritos()><ion-icon name="heart-outline"></ion-icon></ion-button>
+  <div class="lista-productos">
+  <ion-list *ngFor="let producto of productosFiltrados">
+    <ion-item (input)="viewProductDetails(producto)">
+      <ion-button fill="clear" (click)="viewProductDetails(producto)">
+        <ion-thumbnail slot="start">
+          <img [src]="producto.img" alt="{{ producto.img }}">
+        </ion-thumbnail>
+      </ion-button>
+      {{ producto.nombre }} - Precio: {{ producto.precio | currency:'CLP':'symbol' }}
+
+      <ion-button (click)="addToCart(producto)">Agregar al carrito</ion-button>
+    </ion-item>
+  </ion-list>
+</div>
+
+
+
+  <ion-list id="a">
+    <ion-item *ngFor="let product of products" class="item">
+      <ion-button fill="clear" (click)="viewProductDetails(product)" class="item" height="200px" width="200px" >
+      <ion-thumbnail slot="start" height="200px" width="200px" >
+        <img [src]="product.img" alt="{{ product.img }}" height="200px" width="200px">
+      </ion-thumbnail>
+    </ion-button>
+      <ion-label>
+        <h1>{{ product.nombre }}</h1>
+        <h2>Precio: ${{ product.precio }}</h2>
+
+        <ion-button (click)="addToCart(product)">Agregar al carrito</ion-button>
+
+      </ion-label>
+
+
+
