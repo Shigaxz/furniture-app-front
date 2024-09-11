@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoadingController, NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { ClUsuario } from '../model/ClUsuario';
 import { LoginServiceService } from './login-service.service';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -16,15 +14,9 @@ export class Tab3Page {
   username: string = '';
   password: string = '';
 
-  // Lista de administradores (esto es solo un ejemplo, asegúrate de usar datos seguros)
-  usuario: ClUsuario[] = [];
-  sesion: any;
-
   constructor(private navCtrl: NavController,
     private fb: FormBuilder,
-    public restApi: LoginServiceService,
     public loadingController: LoadingController,
-    private router:Router,
     private usuarioService: LoginServiceService,
     private navControl: NavController,
     private cliente: HttpClient,
@@ -43,20 +35,24 @@ export class Tab3Page {
           return dato.username === this.FormularioL.value.username && dato.password === this.FormularioL.value.password
         })
         if (user) {
-          if (user.username === 'admin') {
+          if (user.role == 1) {
             alert("Usuario Admin reconocido");
             this.FormularioL.reset();
             this.navCtrl.navigateRoot('/admin-page');
+            this.usuarioService.sesion = true;
+            this.usuarioService.usuario = user;
           } else {
             alert("Usuario Cliente Logeado");
             this.FormularioL.reset();
             this.navControl.navigateRoot('');
+            this.usuarioService.sesion = true;
+            this.usuarioService.usuario = user;
           }
         } else {
           alert("Error al iniciar sesión!");
         }
       }, (error) => {
-        alert("Error al iniciar sesión!"); // Manejo de errores de la solicitud HTTP
+        alert("Error al iniciar sesión!");
       });
     }
     

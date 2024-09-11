@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-
-import { ClProducto } from '../model/ClProducto';
-import { ProductServiceService } from '../product-service.service';
+import { NavController } from '@ionic/angular';
+import { LoginServiceService } from '../tab3/login-service.service';
 
 @Component({
   selector: 'app-tabs',
@@ -10,8 +9,16 @@ import { ProductServiceService } from '../product-service.service';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(
+    public api: LoginServiceService,
+    private navCtrl: NavController
+  ) {}
 
+  admin(){
+    this.navCtrl.navigateRoot('/admin-page');
+  }
 
-  
+  user(){
+    this.navCtrl.navigateRoot('/user-data');
+  }
 }

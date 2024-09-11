@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="user-data">
+    <img src={{user.usuario.avatar}} alt="">
+    <h1>{{user.usuario.username}}</h1>
+  </div>
+  <hr>
+</ion-content>

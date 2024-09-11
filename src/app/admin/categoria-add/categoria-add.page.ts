@@ -1,10 +1,9 @@
 import { Component,OnInit} from '@angular/core';
-import { NgModule } from '@angular/core';
 
 import { ClCategoria } from '../../model/ClCategoria';
 import { CategoriaServiceService } from './categoria-service.service';
 import { LoadingController } from '@ionic/angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
@@ -20,7 +19,6 @@ export class CategoriaAddPage implements OnInit {
   };
 
   constructor(private formBuilder: FormBuilder,
-    // Injectamos las librerías necesarias
     private loadingController: LoadingController,
     private restApi: CategoriaServiceService,
     private router: Router,) { }
@@ -44,11 +42,11 @@ export class CategoriaAddPage implements OnInit {
           console.log("Next addCategoria Page",res)
           loading.dismiss();
           if (res== null){
-            console.log("Next No Agrego, Ress Null ");
+            console.log("Ress Null ");
             return
           }
           // Si viene respuesta
-          console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
+          console.log("Router;",this.router);
         }
         , complete: () => { }
         , error: (err) => {
@@ -56,7 +54,6 @@ export class CategoriaAddPage implements OnInit {
           loading.dismiss();
         }
       });
-    console.log("Observe que todo lo del suscribe sale después de este mensaje")
   }
 
 }

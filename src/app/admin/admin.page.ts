@@ -30,17 +30,12 @@ export class AdminPage implements OnInit {
 
                    
   constructor(private formBuilder: FormBuilder,
-    // Injectamos las librerías necesarias
     private loadingController: LoadingController,
     private restApi: ProductServiceService,
     private router: Router,
   ) { }
 
-  // Antes que inicie en pantalla
-  // especificamos las validaciones, 
-  //    por medio de formBuilder injectado en el constructor
   ngOnInit() {
-    // Especificamos que todos los campos son obligatorios
     this.productForm = this.formBuilder.group({
       "prod_name": [null, Validators.required],
       'prod_desc': [null, Validators.required],
@@ -48,7 +43,7 @@ export class AdminPage implements OnInit {
       'prod_img': [null, Validators.required]
     });
   }
-  // se ejecutará cuando presione el Submit
+
   async onFormSubmit(form: NgForm) {
     console.log("onFormSubmit del Product ADD")
     const loading = await this.loadingController.create({
@@ -62,11 +57,10 @@ export class AdminPage implements OnInit {
           console.log("Next AddProduct Page",res)
           loading.dismiss();
           if (res== null){
-            console.log("Next No Agrego, Ress Null ");
+            console.log("Ress Null ");
             return
           }
-          // Si viene respuesta
-          console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
+          console.log("Router;",this.router);
         }
         , complete: () => { }
         , error: (err) => {
@@ -74,7 +68,6 @@ export class AdminPage implements OnInit {
           loading.dismiss();
         }
       });
-    console.log("Observe que todo lo del suscribe sale después de este mensaje")
   }
 
 }

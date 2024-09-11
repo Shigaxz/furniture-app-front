@@ -1,10 +1,9 @@
 import { Component,OnInit} from '@angular/core';
-import { NgModule } from '@angular/core';
 
 import { ClBodega } from '../../model/ClBodega';
 import { BodegaService } from './bodega.service';
 import { LoadingController } from '@ionic/angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 
@@ -52,11 +51,10 @@ export class BodegaAddPage implements OnInit {
             console.log("Next addBodega Page",res)
             loading.dismiss();
             if (res== null){
-              console.log("Next No Agrego, Ress Null ");
+              console.log("Ress Null ");
               return
             }
-            // Si viene respuesta
-            console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
+            console.log("Router;",this.router);
           }
           , complete: () => { }
           , error: (err) => {
@@ -64,7 +62,6 @@ export class BodegaAddPage implements OnInit {
             loading.dismiss();
           }
         });
-      console.log("Observe que todo lo del suscribe sale después de este mensaje")
     }
 
 }

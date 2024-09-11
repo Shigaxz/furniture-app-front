@@ -18,11 +18,6 @@ export class Tab1Page {
   terminoBusqueda: string = '';
   @ViewChild('searchBar') searchBar: any;
 
-
-  // LLamamos al método que rescata los productos  
-  
-   
- ;
   constructor(private cartService: CartService , 
     private dataService: DataService,
     public restApi: ProductServiceService,
@@ -44,26 +39,21 @@ export class Tab1Page {
 
   async getProducts() {
     console.log("Entrando :getProducts");
-    // Crea un Wait (Esperar)
     const loading = await this.loadingController.create({
-      message: 'Harrys Loading...'
+      message: 'Loading...'
     });
-    // Muestra el Wait
     await loading.present();
     console.log("Entrando :");
-    // Obtiene el Observable del servicio
     await this.restApi.getProducts()
       .subscribe({
         next: (res) => { 
           console.log("Res:" + res);
-  // Si funciona asigno el resultado al arreglo productos
           this.products = res;
           console.log("thisProductos:",this.products);
           loading.dismiss();
         }
         , complete: () => { }
         , error: (err) => {
-  // Si da error, imprimo en consola.
           console.log("Err:" + err);
           loading.dismiss();
         }
@@ -71,10 +61,8 @@ export class Tab1Page {
   }
   filtrarProductos() {
     if (this.terminoBusqueda.trim() === '') {
-      // Si el término de búsqueda está vacío, muestra una lista vacía
       this.productosFiltrados = [];
     } else {
-      // Si hay un término de búsqueda, filtra los productos
       this.productosFiltrados = this.products.filter(producto =>
         producto.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
       );
@@ -91,11 +79,8 @@ export class Tab1Page {
     });}
   
     ngAfterViewInit() {
-      // Escucha el evento de clic en cualquier parte de la página
       document.addEventListener('click', (event) => {
-        // Verifica si el clic ocurrió fuera del ion-searchbar
         if (!this.searchBar._elementRef.nativeElement.contains(event.target)) {
-          // Desenfoca el ion-searchbar
           this.searchBar.setFocus(false);
         }
       });}

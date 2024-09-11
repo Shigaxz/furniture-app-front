@@ -19,6 +19,7 @@ export class RegisterPage implements OnInit {
     , username: ''
     , password: ''
     , avatar: ''
+    , role: 2
   };
 
   constructor(private formBuilder: FormBuilder,
@@ -51,8 +52,7 @@ export class RegisterPage implements OnInit {
             console.log("Next No Agrego, Ress Null ");
             return
           }
-          // Si viene respuesta
-          console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
+          console.log("Router;",this.router);
         }
         , complete: () => { }
         , error: (err) => {

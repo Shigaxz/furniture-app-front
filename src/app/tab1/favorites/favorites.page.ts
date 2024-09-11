@@ -36,26 +36,21 @@ export class FavoritesPage {
 
   async getProducts() {
     console.log("Entrando :getProducts");
-    // Crea un Wait (Esperar)
     const loading = await this.loadingController.create({
-      message: 'Harrys Loading...'
+      message: 'Loading...'
     });
-    // Muestra el Wait
     await loading.present();
     console.log("Entrando :");
-    // Obtiene el Observable del servicio
     await this.restApi.getProducts()
       .subscribe({
         next: (res) => {
           console.log("Res:" + res);
-  // Si funciona asigno el resultado al arreglo productos
           this.products = res;
           console.log("thisProductos:",this.products);
           loading.dismiss();
         }
         , complete: () => { }
         , error: (err) => {
-  // Si da error, imprimo en consola.
           console.log("Err:" + err);
           loading.dismiss();
         }

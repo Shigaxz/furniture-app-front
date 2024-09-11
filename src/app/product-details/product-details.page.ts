@@ -81,8 +81,7 @@ export class ProductDetailsPage implements OnInit {
               console.log("Next No Agrego, Ress Null ");
               return
             }
-            // Si viene respuesta
-            console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
+            console.log("Router;",this.router);
           }
           , complete: () => { }
           , error: (err) => {
@@ -90,32 +89,26 @@ export class ProductDetailsPage implements OnInit {
             loading.dismiss();
           }
         });
-      console.log("Observe que todo lo del suscribe sale después de este mensaje")
     }
 
     async getComentarios() {
       let i: number = 0;
       console.log("Entrando :getProducts");
-      // Crea un Wait (Esperar)
       const loading = await this.loadingController.create({
-        message: 'Harrys Loading...'
+        message: 'Loading...'
       });
-      // Muestra el Wait
       await loading.present();
       console.log("Entrando :");
-      // Obtiene el Observable del servicio
       await this.restApi.getComentarios()
         .subscribe({
           next: (res) => {
             console.log("Res:" + res);
             this.comentarios = res.filter((com: ClComentario) => com.id_prod === this.product.id);
-    // Si funciona asigno el resultado al arreglo productos
             console.log("thiscomentarios:",this.comentarios);
             loading.dismiss();
           }
           , complete: () => { }
           , error: (err) => {
-    // Si da error, imprimo en consola.
             console.log("Err:" + err);
             loading.dismiss();
           }

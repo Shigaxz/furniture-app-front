@@ -1,0 +1,14 @@
+.user-data{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.user-data img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user-data h1{
+    margin-left: 10px;
+}

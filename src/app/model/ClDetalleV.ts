@@ -1,11 +1,11 @@
 export class ClDetalleV {
     id: number;
-    sucursal: string;
-    productos: []
+    idUser: number;
+    productos: any[]
     plata: number
       constructor(obj: any){
           this.id = obj && obj.id || null
-          this.sucursal = obj && obj.sucursal || null
+          this.idUser = obj && obj.idUser || null
           this.productos = obj && obj.productos || null
           this.plata = obj && obj.plata || null
       }

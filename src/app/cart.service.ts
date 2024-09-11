@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ClProducto } from './model/ClProducto';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -43,7 +41,6 @@ export class CartService {
   }
 
   getTotal(): number {
-    
-    return this.cart.reduce((total, product) => total + product.precio , 0 ) ;
-    
-  }}
+    return this.cart.reduce((total, product) => total + product.precio, 0);
+  }
+}

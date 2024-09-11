@@ -34,9 +34,6 @@
         <ion-row>
           <ion-col size="6">
 
-
-            <!-- Aqui pueden haber cosas interesantes -->
-
           </ion-col>
           <ion-col size="6">
 
@@ -50,5 +47,10 @@
       </ion-toolbar>
     </ion-footer>
   </ion-row>
+  
+   <!-- *ngIf="api.usuario.role == 2" -->
+  <ion-button (click)="carritoCompra()" expand="full" color="success" >
+    Comprar
+  </ion-button>
 
 </ion-content>

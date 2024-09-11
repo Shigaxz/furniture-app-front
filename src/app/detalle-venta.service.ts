@@ -1,48 +1,36 @@
 import { Injectable } from '@angular/core';
 import { ClDetalleV } from './model/ClDetalleV';
 
-// Importamos  las librerías necesarias
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { core } from '@angular/compiler';
+import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-// creamos Constantes que utilizaremos en el envio
-const apiUrl = "http://localhost:3000/Detalle_ven";
+const apiUrl = "https://forniture-api.netlify.app/.netlify/functions/server/api/detalle-ventas";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DetalleServiceService {
-  constructor(private http: HttpClient) { }
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error("handleError Harrys", error); // log to console instead
-      return of(result as T);
-    };
-  }
+  constructor(private http: HttpClient) {}
+
+
   addDetalle(Detalle_ven: ClDetalleV): Observable<ClDetalleV> {
-    console.log("Res-api Enviando AddProduct : ", Detalle_ven);
-    return this.http.post<ClDetalleV>(apiUrl, Detalle_ven, httpOptions)
-      .pipe(
-        tap((Detalle_ven: ClDetalleV) => console.log('added DETALLE w/:', Detalle_ven)),
-        catchError(this.handleError<ClDetalleV>('addProduct'))
-      );
+    console.log('Datos a enviar:', Detalle_ven);
+    return this.http.post<ClDetalleV>(apiUrl, Detalle_ven, httpOptions).pipe(
+      catchError((error) => {
+        console.error('Error al hacer el POST:', error);
+        return throwError(() => new Error(error));
+      })
+    );
   }
+  
   getDetalles(): Observable<ClDetalleV[]> {
-    console.log("getProducts ()");
-    return this.http.get<ClDetalleV[]>(apiUrl)
-      .pipe(
-        tap(heroes => console.log('fetched products')),
-        catchError(this.handleError('getProducts', []))
-      );
+    console.log('getProducts ()');
+    return this.http.get<ClDetalleV[]>(apiUrl);
   }
 
   getdetalle(id: String): Observable<ClDetalleV> {
-    console.log("getProduct ID:" + id);
-    return this.http.get<ClDetalleV>(apiUrl + "/" + id)
-      .pipe(
-        tap(_ => console.log('fetched product id=${id}')),
-        catchError(this.handleError<ClDetalleV>('getProduct id=${id}'))
-      );
-  }}
+    console.log('getProduct ID:' + id);
+    return this.http.get<ClDetalleV>(apiUrl + '/' + id);
+  }
+}

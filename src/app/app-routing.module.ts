@@ -46,6 +46,11 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./tab3/register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'user-data',
+    loadChildren: () => import('./tab3/user-data/user-data.module').then( m => m.UserDataPageModule)
+  }
+
 
 ];
 @NgModule({

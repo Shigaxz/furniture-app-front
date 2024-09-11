@@ -35,5 +35,8 @@ export class AdminPagePage implements OnInit {
   agregarDetalleC(){
     this.navCtrl.navigateRoot('/admin-detc');
   }
+  volverHome(){
+    this.navCtrl.navigateRoot('/tabs/tab1');
+  }
   
 }
