@@ -13,6 +13,7 @@ import { ProductServiceService } from '../../product-service.service';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { LoginServiceService } from 'src/app/tab3/login-service.service';
 
 @Component({
   selector: 'app-detalle-compra',
@@ -37,7 +38,8 @@ export class DetalleCompraPage implements OnInit {
     private restApi2: BodegaService,
     private restApi3: ProductServiceService,
     private router: Router,
-    public route: ActivatedRoute) { }
+    public route: ActivatedRoute,
+    private user: LoginServiceService) { }
 
   ngOnInit() {
     this.getBodegas();
@@ -46,6 +48,7 @@ export class DetalleCompraPage implements OnInit {
       'detalle_prod': [null, Validators.required],
       'detalle_stock': [null, Validators.required],
     });
+    this.user.verificarRol(1, this.user.usuario.role, this.user.sesion);
   }
 
   async onFormSubmit(form: NgForm) {

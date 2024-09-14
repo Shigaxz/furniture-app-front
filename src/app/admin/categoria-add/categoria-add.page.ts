@@ -5,6 +5,7 @@ import { CategoriaServiceService } from './categoria-service.service';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { LoginServiceService } from 'src/app/tab3/login-service.service';
 
 @Component({
   selector: 'app-categoria-add',
@@ -18,15 +19,18 @@ export class CategoriaAddPage implements OnInit {
     , nombre: ''
   };
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private restApi: CategoriaServiceService,
-    private router: Router,) { }
+    private router: Router,
+    private user: LoginServiceService) { }
 
   ngOnInit() {
     this.categoriaForm = this.formBuilder.group({
       "cat_name": [null, Validators.required]
     });
+    this.user.verificarRol(1, this.user.usuario.role, this.user.sesion);
   }
 
   async onFormSubmit(form: NgForm) {

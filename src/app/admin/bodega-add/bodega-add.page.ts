@@ -5,6 +5,7 @@ import { BodegaService } from './bodega.service';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { LoginServiceService } from 'src/app/tab3/login-service.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class BodegaAddPage implements OnInit {
     private loadingController: LoadingController,
     private restApi: BodegaService,
     private router: Router,
+    private user: LoginServiceService
     ) { }
 
     ngOnInit() {
@@ -36,6 +38,7 @@ export class BodegaAddPage implements OnInit {
         "bod_reg": [null, Validators.required],
         "bod_tel": [null, Validators.required],
       });
+      this.user.verificarRol(1, this.user.usuario.role, this.user.sesion);
     }
 
     async onFormSubmit(form: NgForm) {

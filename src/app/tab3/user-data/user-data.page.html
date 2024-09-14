@@ -1,13 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Mi Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="user-data">
-    <img src={{user.usuario.avatar}} alt="">
-    <h1>{{user.usuario.username}}</h1>
-  </div>
-  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="user-data">
+        <img src={{user.usuario.avatar}} alt="">
+        <h1>{{user.usuario.username}}</h1>
+      </ion-col>
+      <ion-col class="logout">
+        <ion-button (click)="logout()" color="danger">Cerrar Sesion</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list class="historial">
+    <h1>Mi Historial de compras</h1>
+  <ion-item *ngFor="let compra of registroCompra">
+    <ion-label>
+      <h2>Compra #{{ compra.id }} - {{ compra.estado }} envio</h2>
+      <p>Precio Total: ${{ compra.plata }}</p>
+      
+      <ion-list>
+        <ion-item *ngFor="let producto of compra.productos">
+          <ion-thumbnail slot="start">
+            <img src={{producto.img}} alt="" />
+          </ion-thumbnail>
+          <ion-label>
+            <h3>{{ producto.nombre }}</h3>
+            <p>Precio: ${{ producto.precio }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-label>
+  </ion-item>
+</ion-list>
 </ion-content>

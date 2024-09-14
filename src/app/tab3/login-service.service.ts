@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NavController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClUsuario } from '../model/ClUsuario';
 
@@ -20,7 +21,10 @@ export class LoginServiceService {
 
   public apiUrl = 'https://forniture-api.netlify.app/.netlify/functions/server/api/usuarios';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private navControl: NavController
+  ) { }
   getUsuarios(): Observable<ClUsuario[]> {
     console.log("getUsuarios ()");
     return this.http.get<ClUsuario[]>(apiUrl);
@@ -32,5 +36,14 @@ export class LoginServiceService {
 
   verificarCredenciales(usuario: any, password: any): Observable<boolean> {
     return this.http.post<boolean>(`${this.apiUrl}/verificarCredenciales`, usuario);
+  }
+  verificarRol(rolRequired: number, rolUser: number, sesion: boolean) {
+    if (sesion) {
+      if (rolRequired !== rolUser) {
+        this.navControl.navigateRoot('');
+      }
+    } else {
+      this.navControl.navigateRoot('');
+    }
   }
 }

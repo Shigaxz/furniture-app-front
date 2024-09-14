@@ -14,11 +14,12 @@ import { DetalleServiceService } from '../detalle-venta.service';
 })
 export class Tab2Page {
   products: ClProducto[] = [];
-  venta: ClDetalleV = {
+  venta: any = {
     id: 0
     , idUser: 0
     , productos : []
     , plata: 0
+    , estado : ''
   };
   cart: any[] = [];
   total: number = 0;
@@ -73,6 +74,8 @@ export class Tab2Page {
       this.venta.productos = this.cart;
       this.venta.idUser = this.user.usuario.id;
       this.venta.plata = this.total;
+      this.venta.estado = "Preparando";
+      alert("Compra realizada con exito");
       this.detalleVenta(this.venta);
     } else {
       alert("Debes seleccionar almenos un producto en el carrito");
@@ -89,10 +92,10 @@ export class Tab2Page {
   detalleVenta(venta : any ) {
     this.ventaApi.addDetalle(venta).subscribe(
       response => {
-        console.log('Promoción añadida:', response);
+        console.log(response);
       },
       error => {
-        console.error('Error al añadir promoción:', error);
+        console.error(error);
       }
     );
   }

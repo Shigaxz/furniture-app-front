@@ -48,7 +48,7 @@ export class Tab1Page {
       .subscribe({
         next: (res) => { 
           console.log("Res:" + res);
-          this.products = res;
+          this.products = res.filter(producto => producto.stock >= 1);;
           console.log("thisProductos:",this.products);
           loading.dismiss();
         }
@@ -59,6 +59,7 @@ export class Tab1Page {
         }
       })
   }
+  
   filtrarProductos() {
     if (this.terminoBusqueda.trim() === '') {
       this.productosFiltrados = [];

@@ -27,21 +27,16 @@
     <ion-button (click)="addToCart(product)">Agregar al carrito</ion-button>
     <ion-button (click)="addToFav(product)"><ion-icon name="heart-outline"></ion-icon></ion-button>
   </div>
-  <ion-card>
+  <ion-card [disabled]="user.sesion === false">
     <ion-card-header>
       <ion-title> Deja tu comentario </ion-title>
     </ion-card-header>
     <form [formGroup]="comentarioForm" (ngSubmit)="onFormSubmit(comentarioForm.value)">
       <ion-item>
-        <ion-label position="floating">Nombre del cliente</ion-label>
-        <ion-input type="text" [(ngModel)]="comentario.user" formControlName="com_user"></ion-input>
-      </ion-item>
-      <ion-item>
         <ion-label position="floating">Reseña</ion-label>
         <ion-input type="text-area" [(ngModel)]="comentario.resenna" formControlName="com_com"></ion-input>
       </ion-item>
-      <ion-button type="submit" color="primary" expand="block"
-        [disabled]="!comentarioForm.valid">Submit</ion-button>
+      <ion-button type="submit" color="primary" expand="block">Submit</ion-button>
     </form>
   </ion-card>
   <ion-card>

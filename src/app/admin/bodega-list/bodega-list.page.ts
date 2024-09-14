@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClBodega } from '../../model/ClBodega';
 import { BodegaService } from '../bodega-add/bodega.service';
 import { LoadingController } from '@ionic/angular';
+import { LoginServiceService } from 'src/app/tab3/login-service.service';
 
 @Component({
   selector: 'app-bodega-list',
@@ -14,10 +15,12 @@ export class BodegaListPage implements OnInit {
   constructor(
     public restApi: BodegaService,
     public loadingController: LoadingController,
+    private user: LoginServiceService
   ) { }
 
   ngOnInit() {
     this.getBodegas();
+    this.user.verificarRol(1, this.user.usuario.role, this.user.sesion);
   }
   async getBodegas() {
     console.log("Entrando :getProducts");

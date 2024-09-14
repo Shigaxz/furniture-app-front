@@ -48,8 +48,7 @@
     </ion-footer>
   </ion-row>
   
-   <!-- *ngIf="api.usuario.role == 2" -->
-  <ion-button (click)="carritoCompra()" expand="full" color="success" >
+  <ion-button (click)="carritoCompra()" expand="full" color="success" *ngIf="user.usuario.role == 2">
     Comprar
   </ion-button>
 

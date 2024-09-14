@@ -8,6 +8,7 @@ import { DataService } from '../data.service';
 
 import { FormBuilder, FormGroup , NgForm, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
+import { LoginServiceService } from '../tab3/login-service.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.page.html',
@@ -32,7 +33,8 @@ export class ProductDetailsPage implements OnInit {
                private formBuilder: FormBuilder,
                private loadingController: LoadingController,
                private restApi: ProductServiceService,
-               private router: Router) {
+               private router: Router,
+               public user : LoginServiceService,) {
     this.product = {} as ClProducto;
   }
 
@@ -71,7 +73,7 @@ export class ProductDetailsPage implements OnInit {
       await loading.present();
 
       this.comentario.id_prod = this.product.id;
-
+      this.comentario.user = this.user.usuario.username;
       await this.restApi.addComentario(this.comentario)
         .subscribe({
           next: (res) => {

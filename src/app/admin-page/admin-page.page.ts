@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-
+import { LoginServiceService } from '../tab3/login-service.service';
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.page.html',
@@ -8,9 +8,12 @@ import { NavController } from '@ionic/angular';
 })
 export class AdminPagePage implements OnInit {
   tasks:any[]=[]
-  constructor(private navCtrl: NavController) { }
+  constructor(
+    private navCtrl: NavController,
+    private user: LoginServiceService) { }
 
   ngOnInit() {
+    this.user.verificarRol(1, this.user.usuario.role, this.user.sesion);
   }
 
   crearProducto(){

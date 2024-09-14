@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ClDetalleV } from './model/ClDetalleV';
 
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
@@ -14,9 +13,8 @@ export class DetalleServiceService {
   constructor(private http: HttpClient) {}
 
 
-  addDetalle(Detalle_ven: ClDetalleV): Observable<ClDetalleV> {
-    console.log('Datos a enviar:', Detalle_ven);
-    return this.http.post<ClDetalleV>(apiUrl, Detalle_ven, httpOptions).pipe(
+  addDetalle(Detalle_ven: any): Observable<any> {
+    return this.http.post<any>(apiUrl, Detalle_ven, httpOptions).pipe(
       catchError((error) => {
         console.error('Error al hacer el POST:', error);
         return throwError(() => new Error(error));
@@ -24,13 +22,11 @@ export class DetalleServiceService {
     );
   }
   
-  getDetalles(): Observable<ClDetalleV[]> {
-    console.log('getProducts ()');
-    return this.http.get<ClDetalleV[]>(apiUrl);
+  getDetalles(): Observable<any[]> {
+    return this.http.get<any[]>(apiUrl);
   }
 
-  getdetalle(id: String): Observable<ClDetalleV> {
-    console.log('getProduct ID:' + id);
-    return this.http.get<ClDetalleV>(apiUrl + '/' + id);
+  getdetalle(id: String): Observable<any> {
+    return this.http.get<any>(apiUrl + '/' + id);
   }
 }

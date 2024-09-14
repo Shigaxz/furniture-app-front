@@ -1,8 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Lista de las bodegas</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/admin-page"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
 <ion-card>
-  <ion-card-header>
-    <ion-card-title>Bodegas</ion-card-title>
-  </ion-card-header>
   <ion-card-content>
+  <ion-card-title>Bodegas</ion-card-title>
     <ion-list>
 
       <ion-item *ngFor="let bodega of bodegas">
@@ -17,3 +25,4 @@
     </ion-list>
   </ion-card-content>
 </ion-card>
+</ion-content>

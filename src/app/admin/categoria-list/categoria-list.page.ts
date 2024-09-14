@@ -6,6 +6,7 @@ import { CategoriaServiceService } from '../categoria-add/categoria-service.serv
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
+import { LoginServiceService } from 'src/app/tab3/login-service.service';
 
 @Component({
   selector: 'app-categoria-list',
@@ -17,10 +18,12 @@ export class CategoriaListPage implements OnInit {
   constructor(
     public restApi: CategoriaServiceService,
     public loadingController: LoadingController,
+    private user: LoginServiceService
   ) { }
 
   ngOnInit() {
     this.getCategorias();
+    this.user.verificarRol(1, this.user.usuario.role, this.user.sesion);
   }
 
   async getCategorias() {

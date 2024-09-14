@@ -7,9 +7,7 @@ import { ProductServiceService } from '../product-service.service';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-
-
-
+import { LoginServiceService } from '../tab3/login-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -29,10 +27,12 @@ export class AdminPage implements OnInit {
   };
 
                    
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private restApi: ProductServiceService,
     private router: Router,
+    private user: LoginServiceService
   ) { }
 
   ngOnInit() {
@@ -42,6 +42,7 @@ export class AdminPage implements OnInit {
       'prod_price': [null, Validators.required],
       'prod_img': [null, Validators.required]
     });
+    this.user.verificarRol(1, this.user.usuario.role, this.user.sesion);
   }
 
   async onFormSubmit(form: NgForm) {
